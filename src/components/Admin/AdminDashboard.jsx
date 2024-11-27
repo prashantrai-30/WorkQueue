@@ -13,10 +13,10 @@ const AdminDashboard = () => {
     const fetchAssignments = async () => {
         setLoading(true);
         try {
-            const token = localStorage.getItem('adminToken'); // Admin authentication token
+          /*  const token = localStorage.getItem('adminToken'); // Admin authentication token
             if (!token) {
                 throw new Error('Unauthorized: Admin token not found');
-            }
+            } */
 
             // API call to fetch assignments
             const response = await axios.get('/api/admin/assignments', {

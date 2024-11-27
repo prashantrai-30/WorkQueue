@@ -1,117 +1,88 @@
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Alert, CircularProgress } from '@mui/material';
 import axios from 'axios';
 
-const RegisterPage = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        role: 'user', 
-    });
-    const [loading, setLoading] = useState(false);
+const Signup = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [role, setRole] = useState('User'); // Default role
     const [success, setSuccess] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState('');
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleSubmit = async (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
-        setLoading(true);
+        setError('');
         setSuccess(false);
-        setError(null);
 
         try {
-            const response = await axios.post('/api/register', formData); 
+            await axios.post(`/api/${role.toLowerCase()}s/register`, { name, email, password });
             setSuccess(true);
-            console.log('Registration successful:', response.data);
-            setFormData({
-                name: '',
-                email: '',
-                password: '',
-                role: 'user',
-            });
-        } catch (err) {
-            console.error('Error during registration:', err);
-            setError(err.response?.data?.error || 'Registration failed. Please try again.');
-        } finally {
-            setLoading(false);
+            setName('');
+            setEmail('');
+            setPassword('');
+        } catch (error) {
+            setError(error.response?.data?.message || 'Signup failed.');
         }
     };
 
     return (
-        <div style={{ maxWidth: 600, margin: '20px auto', padding: 20, border: '1px solid #ccc', borderRadius: 8 }}>
-            <Typography variant="h4" gutterBottom>
-                Register
-            </Typography>
-            {success && <Alert severity="success">Registration successful! You can now log in.</Alert>}
-            {error && <Alert severity="error">{error}</Alert>}
-            <form onSubmit={handleSubmit}>
-                <TextField
-                    label="Name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                    variant="outlined"
-                    required
-                />
-                <TextField
-                    label="Email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                    variant="outlined"
-                    required
-                />
-                <TextField
-                    label="Password"
-                    name="password"
-                    type="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                    variant="outlined"
-                    required
-                />
-                <TextField
-                    select
-                    label="Role"
-                    name="role"
-                    value={formData.role}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                    SelectProps={{
-                        native: true,
-                    }}
-                    variant="outlined"
-                >
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </TextField>
-                <div style={{ marginTop: 20, display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        disabled={loading}
-                        startIcon={loading && <CircularProgress size={20} />}
-                    >
-                        {loading ? 'Registering...' : 'Register'}
-                    </Button>
-                </div>
-            </form>
+        <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+            <div className="card shadow-lg p-4" style={{ width: '400px' }}>
+                <h3 className="text-center mb-4">Sign Up</h3>
+                {success && <div className="alert alert-success">Account created successfully!</div>}
+                {error && <div className="alert alert-danger">{error}</div>}
+                <form onSubmit={handleSignup}>
+                    <div className="mb-3">
+                        <label htmlFor="name" className="form-label">Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            className="form-control"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="email" className="form-label">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            className="form-control"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            className="form-control"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="role" className="form-label">Role</label>
+                        <select
+                            id="role"
+                            className="form-select"
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
+                        >
+                            <option value="User">User</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Head">Head</option>
+                        </select>
+                    </div>
+                    <button type="submit" className="btn btn-primary w-100">Sign Up</button>
+                </form>
+            </div>
         </div>
     );
 };
 
-export default RegisterPage;
+export default Signup;

@@ -1,33 +1,23 @@
 import React from 'react';
-import AssignmentCard from './AssignmentCard';
-import PropTypes from 'prop-types';
+import AssignmentCard from '../Admin/AssignmentCard';
 
-const AssignmentList = ({ assignments }) => {
+const AssignmentList = ({ assignments, handleDecision }) => {
     return (
         <div className="row">
-            {assignments && assignments.length > 0 ? (
+            {assignments.length > 0 ? (
                 assignments.map((assignment) => (
-                    <div key={assignment.id || assignment._id} className="col-md-6 mb-4">
-                        <AssignmentCard assignment={assignment} />
+                    <div key={assignment._id} className="col-md-6 mb-4">
+                        <AssignmentCard 
+                            assignment={assignment} 
+                            handleDecision={handleDecision} 
+                        />
                     </div>
                 ))
             ) : (
-                <p className="text-center">No assignments to display.</p>
+                <p>No assignments found.</p>
             )}
         </div>
     );
-};
-
-AssignmentList.propTypes = {
-    assignments: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string,
-            _id: PropTypes.string,
-            task: PropTypes.string.isRequired,
-            userName: PropTypes.string.isRequired,
-            createdAt: PropTypes.string.isRequired,
-        })
-    ),
 };
 
 export default AssignmentList;

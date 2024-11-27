@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UploadAssignment from './UploadAssignment';
-import AssignmentList from './AssignmentList';
+import AssignmentList from '../Admin/AssignmentList';
 import axios from 'axios';
 
 const UserDashboard = () => {
