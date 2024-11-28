@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const UploadAssignment = () => {
     const [assignment, setAssignment] = useState({ title: '', admin: '' });
-    const [file, setFile] = useState(null); 
+    const [file, setFile] = useState(null); // State to store the uploaded file
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
