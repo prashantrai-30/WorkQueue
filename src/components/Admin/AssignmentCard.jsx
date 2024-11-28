@@ -27,6 +27,10 @@ const AssignmentCard = ({ assignment, onAccept, onReject, onOverturn }) => {
                         <strong>Overturned By:</strong> {assignment.overturnedBy}
                     </p>
                 )}
+                <a href={`/${assignment.filePath}`} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-primary">
+                   Download Task
+                </a>
+
 
                 <div className="btn-group mt-3" role="group">
                     {onAccept && (
