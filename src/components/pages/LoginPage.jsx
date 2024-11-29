@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
 const Login = ({ onLoginSuccess }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('User'); // Default role
+    const [role, setRole] = useState('User'); 
     const [error, setError] = useState('');
 
     const handleLogin = async (e) => {
@@ -62,10 +63,38 @@ const Login = ({ onLoginSuccess }) => {
                     </div>
                     <button type="submit" className="btn btn-primary w-100">Login</button>
                 </form>
+                <div className="mt-4">
+                    <p className="text-center">Or login using:</p>
+                    <div className="d-flex justify-content-center">
+                        {/* Google Login */}
+                        <a
+                            href={'http://localhost:5000/auth/google'}
+                            style={{ margin: '5px' }}
+                        >
+                            <button
+                                className="btn btn-danger"
+                                style={{ backgroundColor: '#DB4437', color: '#fff' }}
+                            >
+                                Login with Google
+                            </button>
+                        </a>
+                        {/* GitHub Login */}
+                        <a
+                            href={'http://localhost:5000/auth/github'}
+                            style={{ margin: '5px' }}
+                        >
+                            <button
+                                className="btn btn-dark"
+                                style={{ backgroundColor: '#333', color: '#fff' }}
+                            >
+                                Login with GitHub
+                            </button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     );
 };
 
 export default Login;
- 

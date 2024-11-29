@@ -80,6 +80,29 @@ const Signup = () => {
                     </div>
                     <button type="submit" className="btn btn-primary w-100">Sign Up</button>
                 </form>
+                <div className="mt-4">
+                    <p className="text-center">Or sign up using:</p>
+                    <div className="d-flex justify-content-center">
+                        <a  href={'http://localhost:5000/auth/google'}
+                            style={{ margin: '5px' }}>
+                            <button
+                                className="btn btn-danger"
+                                style={{ backgroundColor: '#DB4437', color: '#fff' }}
+                            >
+                                Sign Up with Google
+                            </button>
+                        </a>
+                        <a  href={'http://localhost:5000/auth/github'}
+                            style={{ margin: '5px' }}>
+                            <button
+                                className="btn btn-dark"
+                                style={{ backgroundColor: '#333', color: '#fff' }}
+                            >
+                                Sign Up with GitHub
+                            </button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     );
