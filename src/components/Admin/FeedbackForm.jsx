@@ -11,7 +11,7 @@ const FeedbackForm = ({ assignment, onClose, onSubmit }) => {
     useEffect(() => {
         const fetchFeedback = async () => {
             try {
-                const response = await axios.get(`/api/assignments/${assignment._id}/feedback`);
+                const response = await axios.get(`http://localhost:5000/api/assignments/${assignment._id}/feedback`);
                 setExistingFeedback(response.data.feedback);
             } catch (err) {
                 console.error('Error fetching feedback:', err);

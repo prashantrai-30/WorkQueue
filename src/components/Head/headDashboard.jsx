@@ -8,7 +8,7 @@ const HeadDashboard = () => {
 
     const fetchAssignments = async (endpoint) => {
         try {
-            const response = await axios.get(`/api/head/assignments${endpoint}`);
+            const response = await axios.get(`http://localhost:5000/api/head/assignments${endpoint}`);
             setAssignments(response.data.assignments);
         } catch (error) {
             console.error('Error fetching assignments:', error);
@@ -21,7 +21,7 @@ const HeadDashboard = () => {
 
     const handleDecision = async (id, decision) => {
         try {
-            await axios.post(`/api/head/assignments/${id}/overturn`, { headDecision: decision });
+            await axios.post(`http://localhost:5000/api/head/assignments/${id}/overturn`, { headDecision: decision });
             fetchAssignments(view === 'latest' ? '/latest' : '');
         } catch (error) {
             console.error('Error updating decision:', error);

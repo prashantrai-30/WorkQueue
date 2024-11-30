@@ -13,7 +13,7 @@ const Login = ({ onLoginSuccess }) => {
         setError('');
 
         try {
-            const response = await axios.post(`/api/${role.toLowerCase()}s/login`, { email, password });
+            const response = await axios.post(`http://localhost:5000/api/${role.toLowerCase()}s/login`, { email, password });
             onLoginSuccess(response.data.admin || response.data.head || response.data.user);
         } catch (error) {
             setError(error.response?.data?.message || 'Login failed.');

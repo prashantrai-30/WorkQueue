@@ -19,7 +19,7 @@ const AdminDashboard = () => {
             } */
 
             // API call to fetch assignments
-            const response = await axios.get('/api/admin/assignments', {
+            const response = await axios.get('http://localhost:5000/api/admin/assignments', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

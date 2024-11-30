@@ -34,7 +34,7 @@ const UploadAssignment = () => {
         formData.append('file', file);
 
         try {
-            const response = await axios.post('/api/assignments/upload', formData, {
+            const response = await axios.post('http://localhost:5000/api/assignments/upload', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             setSuccess(true);

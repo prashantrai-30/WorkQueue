@@ -15,7 +15,7 @@ const Signup = () => {
         setSuccess(false);
 
         try {
-            await axios.post(`/api/${role.toLowerCase()}s/register`, { name, email, password });
+            await axios.post(`http://localhost:5000/api/${role.toLowerCase()}s/register`, { name, email, password });
             setSuccess(true);
             setName('');
             setEmail('');
