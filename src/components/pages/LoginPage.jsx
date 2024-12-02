@@ -11,15 +11,20 @@ const Login = ({ onLoginSuccess }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         setError('');
-
+    
         try {
-            const response = await axios.post(`http://localhost:5000/api/${role.toLowerCase()}s/login`, { email, password });
-            onLoginSuccess(response.data.admin || response.data.head || response.data.user);
+            const response = await axios.post(`http://localhost:5000cd /api/heads/login`, { email, password });
+    
+            if (response.data.msg === 'Login request sent to current HOD for approval.') {
+                alert(response.data.msg);
+            } else {
+                onLoginSuccess(response.data.head);
+            }
         } catch (error) {
-            setError(error.response?.data?.message || 'Login failed.');
+            setError(error.response?.data?.msg || 'Login failed.');
         }
     };
-
+    
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
             <div className="card shadow-lg p-4" style={{ width: '400px' }}>

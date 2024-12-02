@@ -12,7 +12,7 @@ const UserDashboard = () => {
     const fetchPreviousSubmissions = async () => {
         setLoading(true);
         try {
-            const token = localStorage.getItem('userToken'); // Assume user token is stored in localStorage
+            const token = localStorage.getItem('userToken'); 
             const response = await axios.get('http://localhost:5000/api/user/submissions', {
                 headers: {
                     Authorization: `Bearer ${token}`,
