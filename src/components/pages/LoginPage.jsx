@@ -13,7 +13,7 @@ const Login = ({ onLoginSuccess }) => {
         setError('');
     
         try {
-            const response = await axios.post(`http://localhost:5000cd /api/heads/login`, { email, password });
+            const response = await axios.post(`http://localhost:5000/api/heads/login`, { email, password });
     
             if (response.data.msg === 'Login request sent to current HOD for approval.') {
                 alert(response.data.msg);
