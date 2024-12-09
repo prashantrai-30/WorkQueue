@@ -73,7 +73,7 @@ const Login = ({ onLoginSuccess }) => {
                     <div className="d-flex justify-content-center">
                         {/* Google Login */}
                         <a
-                            href={'http://localhost:5000/auth/google'}
+                            href={'http://localhost:5000/auth/google'} // Google OAuth URL
                             style={{ margin: '5px' }}
                         >
                             <button
